@@ -19,3 +19,4 @@ This project will make use of different tools detailed as follows:
 
 - SEO [fernando.vera@aiep.cl](mailto://fernando.vera@aiep.cl)
 - Developer [alex.carcamo@correoaiep.cl](mailto://alex.carcamo@correoaiep.cl)
+- Developer [fernando.ramirezmun@correoaiep.cl](mailto:fernando.ramirezmun@correoaiep.cl)
