@@ -1,4 +1,4 @@
-# ISI501-4000-2023 TALLER DE DESARROLLO DE JUEGOS
+## ISI501-4000-2023 TALLER DE DESARROLLO DE JUEGOS
 ![](https://www.aiep.cl/img/logo-400x140.png)
 
 Design and implementation of a 2D game in Javascript
