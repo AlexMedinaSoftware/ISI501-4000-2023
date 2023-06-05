@@ -7,7 +7,7 @@ Design and implementation of a 2D game in Javascript
 
 ## Organization Chart
 
-![](https://raw.githubusercontent.com/AlexMedinaSoftware/ISI501-4000-2023/main/docs/Organigrama.png?token=GHSAT0AAAAAACDH74NUXSQR4TZQMEB2EANEZD6D6WA)
+![](https://github.com/AlexMedinaSoftware/ISI501-4000-2023/blob/c4456b61dc337b4ff94ad0c92fc760fc56184689/docs/Organigrama.png)
 
 ## Tech
 
