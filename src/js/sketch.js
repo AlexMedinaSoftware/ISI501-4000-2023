@@ -1,11 +1,6 @@
-
 var bgA = new Array();
-var prota;
 var bgFrame = 1;
 var frames = 0;
-var X = 200
-var Y = 200
-var SpeedScalar = 5;
 var blank;
 var bgDisplayed;
 
@@ -21,24 +16,25 @@ function preload(){
   bgA.push(loadImage("assets/bg8.jpg"));
   bgA.push(loadImage("assets/bg9.jpg"));
 
-  prota = loadImage("assets/Auto_Prota.png");
   blank = loadImage("assets/blank.png");
-
+  loadProta();
 }
 
 function setup() {
+  //corre la funcion para optimiza p5.js
+  optimize();
   //seteamos el fondo a para mostrarlo
   bgDisplayed = bgA;
   createCanvas(700, 800);
-  frameRate(60);
+  gameVelocity(6);
 }
 
 function draw() {
   //guarda los frames transcurridos para hacer calculos
   frames++;
 
-  //cada 3 frames del juego avanza un frame del fondo
-  if (frames % 1 == 0){
+  //cada n frames del juego avanza un frame del fondo
+  if (frames % getBackgroundVelocity() == 0){
     bgFrame++;
   }
   
@@ -51,40 +47,24 @@ function draw() {
   //muesta la imagen de fondo
   image(getFrame(bgFrame), 0, 0, 700, 900);
 
-  //muestra la imegen del protagonista en la posicion x, y
-  //image(prota ,X, Y, 80, 140)
+  //muestra el jugador
+  showPlayer();
 
   //agrega el rectangulo de abajo para guardar espacio para los kilometros y la bencina
   fill(255, 204, 0);
   rect(0, 650, 700, 100)
 
-  //detecta si se presiono alguna tecla y mueve al personaje
-  detectKey();
-}
+  //muestra la info del juego
+  showGameInfo();
 
-
-//funcion para mover al personaje
-function detectKey() {
-  if (keyIsDown(LEFT_ARROW)) {
-    X -= 5;
-  }
-
-  if (keyIsDown(RIGHT_ARROW)) {
-    X += 5;
-  }
-
-  if (keyIsDown(UP_ARROW)) {
-    Y -= 5;
-  }
-
-  if (keyIsDown(DOWN_ARROW)) {
-    Y += 5;
-  }
+  //muestra los informacion de desarrollo en pantalla... mantener al final de draw
+  showDevInfo();
 }
 
 //funcion para decidir el frame del fondo a mostrar
-//TODO: hay que optimizar esto con un array.
-//FondoA[0] = loadImage("assets/bg1.jpg");
 function getFrame(index){
   return bgDisplayed[index-1];
 }
+
+
+
