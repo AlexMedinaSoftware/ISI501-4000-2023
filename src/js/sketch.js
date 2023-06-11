@@ -1,22 +1,9 @@
-var bgA = new Array();
-var bgFrame = 1;
-var frames = 0;
-var blank;
-var bgDisplayed;
-
-function preload(){
+function preload() {
   //cargamos el fondo A
-  bgA.push(loadImage("assets/bg1.jpg"));
-  bgA.push(loadImage("assets/bg2.jpg"));
-  bgA.push(loadImage("assets/bg3.jpg"));
-  bgA.push(loadImage("assets/bg4.jpg"));
-  bgA.push(loadImage("assets/bg5.jpg"));
-  bgA.push(loadImage("assets/bg6.jpg"));
-  bgA.push(loadImage("assets/bg7.jpg"));
-  bgA.push(loadImage("assets/bg8.jpg"));
-  bgA.push(loadImage("assets/bg9.jpg"));
-
+  loadBackgroundA();
+  //imagen de referencia en blanco
   blank = loadImage("assets/blank.png");
+  //cargamos al protagonista
   loadProta();
 }
 
@@ -24,28 +11,17 @@ function setup() {
   //corre la funcion para optimiza p5.js
   optimize();
   //seteamos el fondo a para mostrarlo
-  bgDisplayed = bgA;
+  __bgDisplayed = __bgA;
+  //creamos el fondo del juego
   createCanvas(700, 800);
-  gameVelocity(6);
+  //seteamos la velocidad del juego en 5
+  gameVelocity(5);
 }
 
 function draw() {
-  //guarda los frames transcurridos para hacer calculos
-  frames++;
-
-  //cada n frames del juego avanza un frame del fondo
-  if (frames % getBackgroundVelocity() == 0){
-    bgFrame++;
-  }
-  
-  //como hay 9 frames en el fondo
-  //si el conteo es mayor a 9 se establece a 1 y vuelve al primer frame
-  if (bgFrame > 9){
-    bgFrame = 1;
-  }
-
-  //muesta la imagen de fondo
-  image(getFrame(bgFrame), 0, 0, 700, 900);
+  var bgVelocity = getBackgroundVelocity();
+  //muesta el background
+  __bgDisplayed.showBackground(bgVelocity);
 
   //muestra el jugador
   showPlayer();
@@ -59,11 +35,6 @@ function draw() {
 
   //muestra los informacion de desarrollo en pantalla... mantener al final de draw
   showDevInfo();
-}
-
-//funcion para decidir el frame del fondo a mostrar
-function getFrame(index){
-  return bgDisplayed[index-1];
 }
 
 

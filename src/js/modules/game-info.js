@@ -3,6 +3,8 @@ let __kmsDistance = parseFloat(0);
 let __startGameInfo;
 let __maxGameVelocity = 6;
 
+Object.freeze(__maxGameVelocity);
+
 function retrieveGameInfo(){
     if (__startGameInfo == undefined) __startGameInfo = 0;
 
@@ -19,8 +21,8 @@ function showGameInfo(){
     stroke(0);
     text("KMS: " + __kmsDistance.toFixed(0), width - 120, height - 130);
     text("Map Speed: " + gameVelocity() + " / " + 6, width - 120, height - 115);
-    text("Player Speed: " + __speedScalar, width - 120, height - 100);
-    text("Player Pos: " + __xProta + " | " + __yProta, width - 120, height - 85);
+    text("Player Speed: " + __prota.speedScalar.toFixed(1), width - 120, height - 100);
+    text("Player Pos: " + __prota.x.toFixed(0) + " | " + __prota.y.toFixed(0), width - 120, height - 85);
     text("Nitro: " + __nitro, width - 120, height - 70);
 }
 

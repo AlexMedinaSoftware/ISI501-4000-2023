@@ -1,80 +1,86 @@
-let __xProta = 200;
-let __yProta = 200;
-let __wProta = 80;
-let __hProta = 140;
-let __prota;
-let __speedScalar = 5;
 let __nitro = false;
+let __turn = false;
+let __prota = new Character();
 
 const __screenLimits = {
-    Left: 110,
-    Right: 110,
-    Top: 10,
-    Bottom: 150
+  Left: 110,
+  Right: 110,
+  Top: 10,
+  Bottom: 150
 };
 
 Object.freeze(__screenLimits);
-Object.freeze(__wProta);
-Object.freeze(__hProta);
 
-function loadProta(){
-  __prota = loadImage("assets/Auto_Prota.png");
+function loadProta() {
+  __prota.loadCharacter("/src/assets/ProtaN.png", "/src/assets/ProtaL.png", "/src/assets/ProtaR.png");
 }
 
-function showPlayer(){
-  //detecta si se presiono alguna tecla __yProta mueve al personaje
+function showPlayer() {
+  //detecta si se presiono alguna tecla __prota.y mueve al personaje
   detectKey();
-  
-  //muestra la imegen del protagonista en la posicion __xProta, __yProta
-  image(__prota ,__xProta, __yProta, __wProta, __hProta)
-}
 
-function setPlayerSpeed(speed){
-    let __defSpeedScalar = 5;
-    if (speed == undefined){
-        __speedScalar = __defSpeedScalar;
-    }else{
-        __speedScalar = speed;
-    }
+  //muestra la imegen del protagonista en la posicion __prota.x, __prota.y
+  __prota.showCharacter(__turn);
 }
 
 //funcion para mover al personaje
 function detectKey() {
-    return new Promise(resolve => {
-      if (keyIsDown(LEFT_ARROW)) {
-        __xProta -= __speedScalar;
-      }
-  
-      if (keyIsDown(RIGHT_ARROW)) {
-        __xProta += __speedScalar;
-      }
-  
-      if (keyIsDown(UP_ARROW)) {
-        __yProta -= __speedScalar;
-      }
-  
-      if (keyIsDown(DOWN_ARROW)) {
-        __yProta += __speedScalar;
-      }
+  return new Promise(resolve => {
+    __turn = 0;
+    __presedUD = false;
+    __presedLR = false;
+    if (keyIsDown(LEFT_ARROW)) {
+      __prota.x -= __prota.speedScalar;
+      __turn = -1;
+      __presedLR = true;
+    }
 
-      if (keyIsDown(SHIFT)) {
-        setPlayerSpeed(8);
-        __nitro = true;
-      }else{
-        setPlayerSpeed();
-        __nitro = false;
-      }
-      
-      detectLimits();
+    if (keyIsDown(RIGHT_ARROW)) {
+      __prota.x += __prota.speedScalar;
+      __turn = 1;
+      __presedLR = true;
+    }
 
-      resolve('resolved');
-    });
+    if (keyIsDown(UP_ARROW)) {
+      __prota.y -= __prota.speedScalar;
+      __presedUD = true;
+    }
+
+    if (keyIsDown(DOWN_ARROW)) {
+      __prota.y += __prota.speedScalar;
+      __turn = __turn * -1;
+      __presedUD = true;
+    }
+
+    if (keyIsDown(SHIFT)) {
+      __prota.setCharacterSpeed(8);
+      __nitro = true;
+    } else {
+      __prota.setCharacterSpeed();
+      __nitro = false;
+    }
+
+    if (__presedLR && __presedUD) {
+      __prota.normalizeCharacterSpeed();
+    }
+
+    detectLimits();
+
+    resolve('resolved');
+  });
 }
 
-function detectLimits(){
-    if (__xProta < __screenLimits.Left) __xProta = __screenLimits.Left; 
-    if (__xProta > width - __screenLimits.Right - __wProta) __xProta = width - __screenLimits.Right - __wProta; 
-    
-    if (__yProta < __screenLimits.Top) __yProta = __screenLimits.Top; 
-    if (__yProta > height - __screenLimits.Bottom - __hProta) __yProta = height - __screenLimits.Bottom - __hProta; 
+function detectLimits() {
+  if (__prota.x < __screenLimits.Left) {
+    __prota.x = __screenLimits.Left;
+    __turn = 0;
+  }
+
+  if (__prota.x > width - __screenLimits.Right - __prota.w) {
+    __prota.x = width - __screenLimits.Right - __prota.w;
+    __turn = 0;
+  }
+
+  if (__prota.y < __screenLimits.Top) __prota.y = __screenLimits.Top;
+  if (__prota.y > height - __screenLimits.Bottom - __prota.h) __prota.y = height - __screenLimits.Bottom - __prota.h;
 }
