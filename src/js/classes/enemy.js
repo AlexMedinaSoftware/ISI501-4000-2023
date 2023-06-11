@@ -1,30 +1,35 @@
-class Character {
+class Enemy {
 
-    x = 307;
-    y = 510;
+    x = 200;
+    y = 200;
     w = 80;
     h = 140;
     asset;
     assetL;
     assetR;
     speedScalar = 5;
+    type = 1;
+    preangle = 0;
 
-    constructor(w, h) {
+    constructor(w, h, type) {
         if (w == undefined) w = 80;
         if (h == undefined) h = 140;
+        if (type == undefined) type = 1;
         this.w = w;
         this.h = h;
+        this.type = type
         Object.freeze(this.w);
         Object.freeze(this.h);
+        Object.freeze(this.type);
     }
 
-    loadCharacter(img, imgL, imgR) {
+    loadEnemy(img, imgL, imgR) {
         this.asset = loadImage(img);
         if (imgL != undefined) this.assetL = loadImage(imgL);
         if (imgR != undefined) this.assetR = loadImage(imgR);
     }
 
-    showCharacter(angle = 0) {
+    showEnemy(angle = 0) {
         if (angle == 0){
             image(this.asset, this.x, this.y, this.w, this.h);
         }else if (angle < 0){
@@ -42,7 +47,7 @@ class Character {
         }
     }
 
-    setCharacterSpeed(speed) {
+    setEnemySpeed(speed) {
         let __defSpeedScalar = 5;
         if (speed == undefined) {
             this.speedScalar = __defSpeedScalar;
@@ -51,7 +56,7 @@ class Character {
         }
     }
 
-    normalizeCharacterSpeed() {
+    normalizeEnemySpeed() {
         this.speedScalar = this.speedScalar / 1.5;
     }
 }

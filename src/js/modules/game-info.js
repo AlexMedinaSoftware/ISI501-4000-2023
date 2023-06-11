@@ -18,7 +18,7 @@ function retrieveGameInfo(){
 function showGameInfo(){
     retrieveGameInfo();
     fill(0);
-    stroke(0);
+    stroke(155);
     text("KMS: " + __kmsDistance.toFixed(0), width - 120, height - 130);
     text("Map Speed: " + gameVelocity() + " / " + 6, width - 120, height - 115);
     text("Player Speed: " + __prota.speedScalar.toFixed(1), width - 120, height - 100);

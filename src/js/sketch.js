@@ -1,10 +1,15 @@
 function preload() {
   //cargamos el fondo A
   loadBackgroundA();
+
   //imagen de referencia en blanco
   blank = loadImage("assets/blank.png");
+
   //cargamos al protagonista
   loadProta();
+
+  //cargamos los enemigos
+  loadEnemies();
 }
 
 function setup() {
@@ -18,24 +23,56 @@ function setup() {
   gameVelocity(5);
 }
 
+//scene 0: LOGO
+//scene 1: MENU
+//scene 2: GAME
+//scene 3: GAME OVER
+//scene 4: VIDEO
+var currentScene = 2;
+var lastChange = 0;
 function draw() {
-  var bgVelocity = getBackgroundVelocity();
-  //muesta el background
-  __bgDisplayed.showBackground(bgVelocity);
+  switch (currentScene) {
+    case 2:
+      sceneGame();
+      break;
+    case 3:
+      sceneOver();
+      break;
+    default:
+      break;
+  }
 
-  //muestra el jugador
-  showPlayer();
-
-  //agrega el rectangulo de abajo para guardar espacio para los kilometros y la bencina
-  fill(255, 204, 0);
-  rect(0, 650, 700, 100)
-
-  //muestra la info del juego
-  showGameInfo();
+  alternateScene();
 
   //muestra los informacion de desarrollo en pantalla... mantener al final de draw
   showDevInfo();
 }
 
+function changeScene(number){
+  lastChange = millis();
+  currentScene = number;
+}
 
+function alternateScene(){
+  if (currentScene == 3){
+    if ((millis() - lastChange) > 5000){
+      changeScene(2);
+      resetGameScene();
+    }
+  }
+}
+
+function timeInScene(){
+  return (millis() - lastChange) / 1000;
+}
+
+function resetGameScene(){
+  __prota.x = 307;
+  __prota.y = 510;
+
+  __screenEnemies = [];
+  __startGameInfo = millis();
+  __kmsDistance = parseFloat(0);
+  gameVelocity(5);
+}
 
