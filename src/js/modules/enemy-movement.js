@@ -85,13 +85,15 @@ function choroMovement(enemy) {
     var amount = 7;
     enemy.preangle = 0;
     enemy.y = enemy.y + amount;
-    if (__prota.x < enemy.x) {
-        enemy.x -= 1;
-        enemy.preangle = 1;
-    }
-    if (__prota.x > enemy.x) {
-        enemy.x += 1;
-        enemy.preangle = -1;
+    if (enemy.y - __prota.h < __prota.y){
+        if (__prota.x < enemy.x) {
+            enemy.x -= 1;
+            enemy.preangle = 1;
+        }
+        if (__prota.x > enemy.x) {
+            enemy.x += 1;
+            enemy.preangle = -1;
+        }
     }
     if (enemy.y > height) removeEnemy(enemy);
 }
