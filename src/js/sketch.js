@@ -30,6 +30,7 @@ function setup() {
 //scene 4: VIDEO
 var currentScene = 2;
 var lastChange = 0;
+
 function draw() {
   switch (currentScene) {
     case 2:

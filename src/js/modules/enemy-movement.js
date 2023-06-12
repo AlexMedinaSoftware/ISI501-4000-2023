@@ -8,12 +8,12 @@ var __maxChoro = 2;
 
 function loadEnemies() {
     __enemy_perkin = new Enemy();
-    __enemy_perkin.loadEnemy("/src/assets/EAN.png", "/src/assets/EAL.png", "/src/assets/EAR.png");
+    __enemy_perkin.loadEnemy("assets/EAN.png", "assets/EAL.png", "assets/EAR.png");
     __enemy_perkin.type = 1;
 
     
     __enemy_choro = new Enemy();
-    __enemy_choro.loadEnemy("/src/assets/EBN.png", "/src/assets/EBL.png", "/src/assets/EBR.png");
+    __enemy_choro.loadEnemy("assets/EBN.png", "assets/EBL.png", "assets/EBR.png");
     __enemy_choro.type = 2;
 }
 
@@ -28,7 +28,7 @@ function processEnemies() {
         if (prob < 70) {
             var e = Object.assign(Object.create(Object.getPrototypeOf(__enemy_perkin)), __enemy_perkin)
             e.x = getRandomPositionX();
-            e.y = -100;
+            e.y = -150;
             if (getCountEnemies(1) < __maxPerkin && notCollide(e)) {
                 console.log("Generando perkin");
                 __screenEnemies.push(e);
@@ -39,7 +39,7 @@ function processEnemies() {
         if (prob < 65) {
             var e = Object.assign(Object.create(Object.getPrototypeOf(__enemy_choro)), __enemy_choro)
             e.x = getRandomPositionX();
-            e.y = -100;
+            e.y = -150;
             if (getCountEnemies(1) < __maxChoro && notCollide(e)) {
                 console.log("Generando choro");
                 __screenEnemies.push(e);
@@ -144,8 +144,16 @@ function collideEnemies() {
             
             if (hit && (aindex != index)) {
                 console.log("enemy hit!! " + aindex + " - " + index);
-                removeEnemy(enemy);
-                removeEnemy(aenemy);
+                if (enemy.type > aenemy.type){
+                    removeEnemy(aenemy);
+                }
+                else if (aenemy.type > enemy.type){
+                    removeEnemy(enemy);
+                }
+                else {
+                    removeEnemy(aenemy);
+                    removeEnemy(enemy);
+                }
             }
         });
     });
