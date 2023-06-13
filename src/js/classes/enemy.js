@@ -2,8 +2,8 @@ class Enemy {
 
     x = 200;
     y = 200;
-    w = 80;
-    h = 140;
+    w = 80; //80
+    h = 140; //140
     asset;
     assetL;
     assetR;

@@ -28,11 +28,14 @@ function setup() {
 //scene 2: GAME
 //scene 3: GAME OVER
 //scene 4: VIDEO
-var currentScene = 2;
+var currentScene = 1;
 var lastChange = 0;
 
 function draw() {
   switch (currentScene) {
+    case 1:
+      sceneMenu();
+      break;
     case 2:
       sceneGame();
       break;
@@ -57,7 +60,7 @@ function changeScene(number){
 function alternateScene(){
   if (currentScene == 3){
     if ((millis() - lastChange) > 5000){
-      changeScene(2);
+      changeScene(1);
       resetGameScene();
     }
   }

@@ -4,7 +4,8 @@ var __screenEnemies = [];
 var __spawnPositions = [155, 257, 367, 472];
 var __maxPerkin = 3;
 var __maxChoro = 2;
-
+var __probPerkin = 70;
+var __probChoro = 90;
 
 function loadEnemies() {
     __enemy_perkin = new Enemy();
@@ -25,7 +26,7 @@ function processEnemies() {
         lastGeneration = secs;
         var prob = getRandomProbability();
         //probabilidad que aparezca un perkin 70%
-        if (prob < 70) {
+        if (prob < __probPerkin) {
             var e = Object.assign(Object.create(Object.getPrototypeOf(__enemy_perkin)), __enemy_perkin)
             e.x = getRandomPositionX();
             e.y = -150;
@@ -36,11 +37,11 @@ function processEnemies() {
         }
 
         //probabilidad que aparezca un choro 50%
-        if (prob < 65) {
+        if (prob < __probChoro) {
             var e = Object.assign(Object.create(Object.getPrototypeOf(__enemy_choro)), __enemy_choro)
             e.x = getRandomPositionX();
             e.y = -150;
-            if (getCountEnemies(1) < __maxChoro && notCollide(e)) {
+            if (getCountEnemies(2) < __maxChoro && notCollide(e)) {
                 console.log("Generando choro");
                 __screenEnemies.push(e);
             }
@@ -131,7 +132,7 @@ function removeEnemy(enemy) {
 function notCollide(aenemy) {
     var collide = false;
     __screenEnemies.forEach(enemy => {
-        var hit = collideRectRect(enemy.x, enemy.y, enemy.w, enemy.h, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
+        var hit = collideRectRect(enemy.x + 20, enemy.y + 20, enemy.w - 40, enemy.h - 40, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
         if (hit) collide = true;
     });
     return !collide;
@@ -142,7 +143,7 @@ function collideEnemies() {
         var aindex = __screenEnemies.indexOf(aenemy);
         __screenEnemies.forEach(enemy => {
             var index = __screenEnemies.indexOf(enemy);
-            var hit = collideRectRect(enemy.x, enemy.y, enemy.w, enemy.h, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
+            var hit = collideRectRect(enemy.x + 20, enemy.y + 20, enemy.w - 40, enemy.h - 40, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
             
             if (hit && (aindex != index)) {
                 console.log("enemy hit!! " + aindex + " - " + index);

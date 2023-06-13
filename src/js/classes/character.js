@@ -2,8 +2,8 @@ class Character {
 
     x = 307;
     y = 510;
-    w = 80;
-    h = 140;
+    w = 80; //80
+    h = 140; //140
     asset;
     assetL;
     assetR;
