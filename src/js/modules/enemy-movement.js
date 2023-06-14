@@ -1,11 +1,12 @@
 var __enemy_perkin;
 var __enemy_choro;
 var __screenEnemies = [];
-var __spawnPositions = [155, 257, 367, 472];
+//var __spawnPositions = [155, 257, 367, 472];
+var __spawnPositions = [115, 155, 215, 257, 335, 367, 410, 430, 450, 472, 535];
 var __maxPerkin = 3;
 var __maxChoro = 2;
 var __probPerkin = 70;
-var __probChoro = 90;
+var __probChoro = 60;
 
 function loadEnemies() {
     __enemy_perkin = new Enemy();
