@@ -78,5 +78,13 @@ function resetGameScene(){
   __startGameInfo = millis();
   __kmsDistance = parseFloat(0);
   gameVelocity(5);
+  __bencina = 100;
+}
+// Esta función hace que el juego termine si la bencina llega a 0
+function empty(){
+  if((__bencina.toFixed(0)) <= 0){
+      changeScene(3);
+      return;
+  }
 }
 
