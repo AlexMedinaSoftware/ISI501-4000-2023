@@ -41,6 +41,7 @@ function sceneVideo() {
     image(__video, 0, 200, width, height-400, 0, 0, 1920, 1080);
     if (__videoEnded) {
       changeScene(1);
+      resetGameScene();
     }
     if (sceneVideoFirst){
         setupVideoScene();
@@ -97,27 +98,27 @@ function gameLevel() {
     }
 
     // Estos if aumentan la cantidad de enemigos en la pantalla según la distancia recorrida
-    if (__kmsDistance < 3) {
+    if (__kmsDistance < 30) {
         __maxChoro = 2;
         __maxPerkin = 3;
         __maxFuel = 2;
     }
-    if (__kmsDistance >= 3 && __kmsDistance < 5) {
+    if (__kmsDistance >= 30 && __kmsDistance < 50) {
         __maxChoro = 4;
         __maxPerkin = 5;
         __maxFuel = 2;
     }
-    if (__kmsDistance >= 5 && __kmsDistance < 7) {
+    if (__kmsDistance >= 50 && __kmsDistance < 70) {
         __maxChoro = 6;
         __maxPerkin = 7;
         __maxFuel = 2;
     }
-    if (__kmsDistance >= 7 && __kmsDistance < 9) {
+    if (__kmsDistance >= 70 && __kmsDistance < 90) {
         __maxChoro = 8;
         __maxPerkin = 9;
         __maxFuel = 2;
     }
-    if (__kmsDistance > 10) {
+    if (__kmsDistance > 100) {
         __maxChoro = 10;
         __maxPerkin = 11;
         __maxFuel = 2;
