@@ -10,6 +10,9 @@ function preload() {
 
   //cargamos los enemigos
   loadEnemies();
+
+  //cargamos el video
+  loadVideoScene();
 }
 
 function setup() {
@@ -28,11 +31,14 @@ function setup() {
 //scene 2: GAME
 //scene 3: GAME OVER
 //scene 4: VIDEO
-var currentScene = 1;
+var currentScene = 0;
 var lastChange = 0;
 
 function draw() {
   switch (currentScene) {
+    case 0:
+      sceneLoad();
+      break;
     case 1:
       sceneMenu();
       break;
@@ -41,6 +47,9 @@ function draw() {
       break;
     case 3:
       sceneOver();
+      break;
+    case 4:
+      sceneVideo();
       break;
     default:
       break;
@@ -52,25 +61,34 @@ function draw() {
   showDevInfo();
 }
 
-function changeScene(number){
+function changeScene(number) {
   lastChange = millis();
   currentScene = number;
+
+  if (number == 4){
+    setupVideoScene();
+  }
 }
 
-function alternateScene(){
-  if (currentScene == 3){
-    if ((millis() - lastChange) > 5000){
+function alternateScene() {
+  if (currentScene == 3) {
+    if ((millis() - lastChange) > 5000) {
       changeScene(1);
       resetGameScene();
     }
   }
+  if (currentScene == 0) {
+    if ((millis() - lastChange) > 3000) {
+      changeScene(4);
+    }
+  }
 }
 
-function timeInScene(){
+function timeInScene() {
   return (millis() - lastChange) / 1000;
 }
 
-function resetGameScene(){
+function resetGameScene() {
   __prota.x = 307;
   __prota.y = 510;
 
@@ -81,10 +99,10 @@ function resetGameScene(){
   __bencina = 100;
 }
 // Esta función hace que el juego termine si la bencina llega a 0
-function empty(){
-  if((__bencina.toFixed(0)) <= 0){
-      changeScene(3);
-      return;
+function empty() {
+  if ((__bencina.toFixed(0)) <= 0) {
+    changeScene(3);
+    return;
   }
 }
 

@@ -30,6 +30,23 @@ function sceneOver() {
     pop();
 }
 
+function sceneLoad() {
+    push();
+    background(0);
+    textSize(46);
+    fill(255);
+    stroke(255);
+    text("LOADING...", width / 4, height / 2);
+    pop();
+}
+
+function sceneVideo() {
+    background(0);
+    image(__video, 0, 200, width, height-400, 0, 0, 1280, 720);
+    if (__videoEnded) {
+      changeScene(1);
+    }
+  }
 
 function sceneMenu() {
     push();
