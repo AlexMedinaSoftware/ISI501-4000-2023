@@ -31,13 +31,12 @@ function setup() {
 //scene 2: GAME
 //scene 3: GAME OVER
 //scene 4: VIDEO
-var currentScene = 0;
+var currentScene = 4;
 var lastChange = 0;
 
 function draw() {
   switch (currentScene) {
     case 0:
-      sceneLoad();
       break;
     case 1:
       sceneMenu();
@@ -64,10 +63,6 @@ function draw() {
 function changeScene(number) {
   lastChange = millis();
   currentScene = number;
-
-  if (number == 4){
-    setupVideoScene();
-  }
 }
 
 function alternateScene() {

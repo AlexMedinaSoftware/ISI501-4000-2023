@@ -30,22 +30,28 @@ function sceneOver() {
     pop();
 }
 
-function sceneLoad() {
+var sceneVideoFirst = true;
+function sceneVideo() {
     push();
     background(0);
     textSize(46);
     fill(255);
     stroke(255);
-    text("LOADING...", width / 4, height / 2);
-    pop();
-}
-
-function sceneVideo() {
-    background(0);
-    image(__video, 0, 200, width, height-400, 0, 0, 1280, 720);
+    text("CLICK TO PLAY", width / 4, height / 2);
+    image(__video, 0, 200, width, height-400, 0, 0, 1920, 1080);
     if (__videoEnded) {
       changeScene(1);
     }
+    if (sceneVideoFirst){
+        setupVideoScene();
+        sceneVideoFirst = false;
+        __video.play();
+    }
+    
+    if (__video.time() == 0){
+        __video.play();
+    }
+    pop();
   }
 
 function sceneMenu() {

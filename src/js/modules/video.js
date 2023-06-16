@@ -4,7 +4,7 @@ let __videoEnded = false;
 
 
 function loadVideoScene(){
-    __video = createVideo(["assets/videoA.mkv"]);
+    __video = createVideo(["assets/intro.mp4"]);
     __video.elt.hidden = true;
     __video.elt.addEventListener('ended', videoEndedCallback);
 }
@@ -13,6 +13,7 @@ function videoEndedCallback() {
     __videoEnded = true;
 }
 
-function setupVideoScene(){
+function setupVideoScene(){    
+    __videoEnded = false;
     __video.play();
 }
