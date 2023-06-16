@@ -25,7 +25,8 @@ function sceneOver() {
     textSize(46);
     fill(255);
     stroke(255);
-    text("GAME OVER", width / 4, height / 2);
+    text(" DISTANCE: " + __kmsDistance.toFixed(0) + " kms", width / 4, (height / 2) - 100)
+    text(" GAME OVER", width / 4, height / 2);
     text("          " + (5 - timeInScene().toFixed(0)), width / 4, height - 100);
     pop();
 }
