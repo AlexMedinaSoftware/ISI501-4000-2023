@@ -62,7 +62,7 @@ function sceneMenu() {
     fill(255);
     textSize(32);
     textAlign(CENTER);
-    text("Chilean MadMax", width / 2, height / 2 - 100);
+    image(__logoImage, 0, 200, 700, 116, 0, 0, 754, 116);
 
 
     if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 && mouseY < height / 2 + 30) {

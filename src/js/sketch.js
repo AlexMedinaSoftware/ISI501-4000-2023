@@ -1,9 +1,12 @@
+let __logoImage;
+
 function preload() {
   //cargamos el fondo A
   loadBackgroundA();
 
   //imagen de referencia en blanco
   blank = loadImage("assets/blank.png");
+  __logoImage = loadImage("assets/logo.png");
 
   //cargamos al protagonista
   loadProta();
