@@ -10,7 +10,7 @@ var __maxFuel = 2;
 
 var __probPerkin = 70;
 var __probChoro = 60;
-var __probFuel = 20;
+var __probFuel = 40;
 
 function loadEnemies() {
     __enemy_perkin = new Enemy();
