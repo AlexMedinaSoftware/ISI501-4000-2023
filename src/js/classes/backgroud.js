@@ -7,7 +7,7 @@ class Backgrond {
         this.assets.push(image);
     }
 
-    showBackground(velocity) {
+    draw(velocity) {
         //guarda los frames transcurridos para hacer calculos
         this.frames++;
 

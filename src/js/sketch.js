@@ -16,8 +16,12 @@ function preload() {
 
   //cargamos el video
   loadVideoScene();
+
+  //cargamos los sonidos
+  loadSounds();
 }
 
+var skipVideo;
 function setup() {
   //corre la funcion para optimiza p5.js
   optimize();
@@ -27,6 +31,16 @@ function setup() {
   createCanvas(700, 800);
   //seteamos la velocidad del juego en 5
   gameVelocity(5);
+
+  skipVideo = new Button({
+    x: width - 50, y: height - 25,
+    width: 80, height: 30,
+    align_x: 0, align_y: 0,
+    content: 'Skip',
+    on_press() {
+      changeScene(1);
+    }
+  });
 }
 
 //scene 0: LOGO
@@ -66,18 +80,36 @@ function draw() {
 function changeScene(number) {
   lastChange = millis();
   currentScene = number;
+
+  stopGameplaySound();
+  stopMenuSound();
+
+  if (number == 1) {
+    playMenuSound();
+  }
+
+  if (number == 2) {
+    playGameplaySound();
+    resetGameScene();
+  }
+
+  if (number == 3) {
+    wastedSound();
+  }
 }
 
 function alternateScene() {
+  //si lleva mas de 3 segs en la escena 0 (blank) cambia al menu
+  if (currentScene == 0) {
+    if ((millis() - lastChange) > 3000) {
+      changeScene(1);
+    }
+  }
+
+  //si lleva mas de 5 segs en la escena 3 (game over) cambia al menu
   if (currentScene == 3) {
     if ((millis() - lastChange) > 5000) {
       changeScene(1);
-      resetGameScene();
-    }
-  }
-  if (currentScene == 0) {
-    if ((millis() - lastChange) > 3000) {
-      changeScene(4);
     }
   }
 }
@@ -96,6 +128,7 @@ function resetGameScene() {
   gameVelocity(5);
   __bencina = 100;
 }
+
 // Esta función hace que el juego termine si la bencina llega a 0
 function empty() {
   if ((__bencina.toFixed(0)) <= 0) {

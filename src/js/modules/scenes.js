@@ -1,7 +1,7 @@
 function sceneGame() {
     var bgVelocity = getBackgroundVelocity();
     //muesta el background
-    __bgDisplayed.showBackground(bgVelocity);
+    __bgDisplayed.draw(bgVelocity);
 
     //muestra el jugador
     showPlayer();
@@ -53,9 +53,11 @@ function sceneVideo() {
     if (__video.time() == 0){
         __video.play();
     }
+    skipVideo.draw();
     pop();
   }
 
+var hoverPlay = false;
 function sceneMenu() {
     push();
     background(0); // Fondo negro para el menú
@@ -66,14 +68,20 @@ function sceneMenu() {
     textAlign(CENTER);
     image(__logoImage, 0, 200, 700, 116, 0, 0, 754, 116);
 
-
-    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 && mouseY < height / 2 + 30) {
+    if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 && mouseY < height / 2 + 40) {
         fill(255, 0, 0); // Resaltar el botón cuando el cursor está sobre él
+        if (!hoverPlay){
+            hoverPlay = true;
+            onFocusedMenu();
+        }
         if (mouseIsPressed) {
+            onClickMenu();
             // Redireccionar al juego cuando se hace clic en el botón "Jugar"
+            stopMenuSound();
             changeScene(2);
         }
     } else {
+        hoverPlay = false;
         fill(255); // Color normal del botón
     }
     rect(width / 2 - 75, height / 2, 150, 40);
@@ -122,7 +130,7 @@ function gameLevel() {
     if (__kmsDistance > 100) {
         __maxChoro = 10;
         __maxPerkin = 11;
-        __maxFuel = 2;
+        __maxFuel = 1;
     }
 }
 

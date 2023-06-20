@@ -1,5 +1,7 @@
 let __startDevInfo;
-
+/**
+ * Muestra la informacion de desarrollo en pantalla
+ */
 function showDevInfo(){
     if (__startDevInfo == undefined) __startDevInfo = 0;
     let fps = frameRate();

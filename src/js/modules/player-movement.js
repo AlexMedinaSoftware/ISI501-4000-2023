@@ -12,7 +12,7 @@ const __screenLimits = {
 Object.freeze(__screenLimits);
 
 function loadProta() {
-  __prota.loadCharacter("assets/ProtaN.png", "assets/ProtaL.png", "assets/ProtaR.png");
+  __prota.load("assets/ProtaN.png", "assets/ProtaL.png", "assets/ProtaR.png");
 }
 
 function showPlayer() {
@@ -20,7 +20,7 @@ function showPlayer() {
   detectKey();
 
   //muestra la imegen del protagonista en la posicion __prota.x, __prota.y
-  __prota.showCharacter(__turn);
+  __prota.draw(__turn);
 }
 
 //funcion para mover al personaje
@@ -53,15 +53,15 @@ function detectKey() {
     }
 
     if (keyIsDown(SHIFT)) {
-      __prota.setCharacterSpeed(8);
+      __prota.setSpeed(8);
       __nitro = true;
     } else {
-      __prota.setCharacterSpeed();
+      __prota.setSpeed();
       __nitro = false;
     }
 
     if (__presedLR && __presedUD) {
-      __prota.normalizeCharacterSpeed();
+      __prota.normalizeSpeed();
     }
 
     detectLimits();

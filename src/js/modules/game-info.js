@@ -3,6 +3,7 @@ let __kmsDistance = parseFloat(0);
 let __startGameInfo;
 let __maxGameVelocity = 6;
 let __bencina = 100;
+let __fuelUsage = 2;
 
 Object.freeze(__maxGameVelocity);
 
@@ -13,8 +14,7 @@ function retrieveGameInfo(){
     let elapsed = giEnd - __startGameInfo;
     let km = parseFloat(elapsed) / parseFloat(5000) * parseFloat(__gameVelocity);
     __kmsDistance = parseFloat(__kmsDistance) + parseFloat(km);
-    //CAMBIO!!
-    __bencina -= km * 2;
+    __bencina -= km * __fuelUsage;
     __startGameInfo = millis();
 }
 

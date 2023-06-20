@@ -18,40 +18,59 @@ class Character {
         Object.freeze(this.h);
     }
 
-    loadCharacter(img, imgL, imgR) {
+    /**
+     * Precarga los assets del jugador
+     * @param {string} img Ruta imagen normal del vehiculo
+     * @param {string} imgL Ruta imagen virando a la izquierda del vehiculo
+     * @param {string} imgR Ruta imagen virando a la derecha del vehiculo
+     */
+    load(img, imgL, imgR) {
         this.asset = loadImage(img);
         if (imgL != undefined) this.assetL = loadImage(imgL);
         if (imgR != undefined) this.assetR = loadImage(imgR);
     }
 
-    showCharacter(angle = 0) {
-        if (angle == 0){
+    /**
+     * Dibuja el jugador en pantalla
+     */
+    draw(angle = 0) {
+        if (angle == 0) {
             image(this.asset, this.x, this.y, this.w, this.h);
-        }else if (angle < 0){
-            if (this.assetL != undefined){
+        } else if (angle < 0) {
+            if (this.assetL != undefined) {
                 image(this.assetL, this.x, this.y, this.w, this.h);
-            }else{
+            } else {
                 image(this.asset, this.x, this.y, this.w, this.h);
             }
-        }else if (angle > 0){
-            if (this.assetR != undefined){
+        } else if (angle > 0) {
+            if (this.assetR != undefined) {
                 image(this.assetR, this.x, this.y, this.w, this.h);
-            }else{
+            } else {
                 image(this.asset, this.x, this.y, this.w, this.h);
             }
         }
+        if (!playersound.isPlaying()){
+            this.setSpeed(this.speedScalar);
+        }
     }
-
-    setCharacterSpeed(speed) {
+    /**
+     * Setea la velocidad del jugador
+     * @param {number} speed Velocidad deseada
+     */
+    setSpeed(speed) {
         let __defSpeedScalar = 5;
         if (speed == undefined) {
             this.speedScalar = __defSpeedScalar;
         } else {
             this.speedScalar = speed;
         }
+        setCarSound(this.speedScalar);
     }
 
-    normalizeCharacterSpeed() {
+    /**
+     * Normaliza la velocidad del enemigo al moverse en diagonal
+     */
+    normalizeSpeed() {
         this.speedScalar = this.speedScalar / 1.5;
     }
 }
