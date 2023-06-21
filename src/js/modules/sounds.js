@@ -33,11 +33,11 @@ var volume = {
 function loadSounds(){
     soundFormats('wav');
     //Menu Background
-    menusound = loadSound('sounds/Soundtrack/Menu_01.wav');
+    menusound = loadSound('sounds/Soundtrack/Menu_01.mp3');
     //Gameplay soundtrack
-    gameplaysound0 = loadSound('sounds/Soundtrack/gameplay01.wav');
-    gameplaysound1 = loadSound('sounds/Soundtrack/gameplay02.wav');
-    gameplaysound2 = loadSound('sounds/Soundtrack/gameplay03.wav');
+    gameplaysound0 = loadSound('sounds/Soundtrack/gameplay01.mp3');
+    gameplaysound1 = loadSound('sounds/Soundtrack/gameplay02.mp3');
+    gameplaysound2 = loadSound('sounds/Soundtrack/gameplay03.mp3');
     //Alert
     alertsound = loadSound('sounds/BancoFoley/alert/alert01.wav');
     //Car
