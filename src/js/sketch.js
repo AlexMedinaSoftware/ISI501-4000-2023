@@ -41,6 +41,7 @@ function setup() {
       changeScene(1);
     }
   });
+
 }
 
 //scene 0: LOGO
@@ -78,6 +79,7 @@ function draw() {
 }
 
 function changeScene(number) {
+  pauseBtn.hidden = true;
   lastChange = millis();
   currentScene = number;
 
@@ -91,6 +93,7 @@ function changeScene(number) {
   if (number == 2) {
     playGameplaySound();
     resetGameScene();
+    pauseBtn.hidden = false;
   }
 
   if (number == 3) {

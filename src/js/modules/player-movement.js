@@ -12,7 +12,7 @@ const __screenLimits = {
 Object.freeze(__screenLimits);
 
 function loadProta() {
-  __prota.load("assets/ProtaN.png", "assets/ProtaL.png", "assets/ProtaR.png");
+  __prota.load("assets/ProtaN.webp", "assets/ProtaL.webp", "assets/ProtaR.webp");
 }
 
 function showPlayer() {

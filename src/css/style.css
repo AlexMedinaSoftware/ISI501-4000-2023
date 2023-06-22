@@ -5,3 +5,59 @@ html, body {
 canvas {
   display: block;
 }
+
+#p5_loading{
+  width: 700px;
+  height: 800px;
+  font-size: 1px;
+  color: black;
+  background-color: black;
+  text-align: center;
+  vertical-align: middle;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+#p5_loading:before{
+  font-size: 50px;
+  content: 'Game is Loading...';
+  display: inline-block;
+  cursor: auto;
+  color: white;
+  width: 700px;
+  animation: Pulse 2s ease 0s infinite normal forwards;
+}
+
+
+@keyframes Pulse {
+	0% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+		transform-origin: center center;
+	}
+
+	10% {
+		animation-timing-function: ease-in;
+		transform: scale(0.91);
+	}
+
+	17% {
+		animation-timing-function: ease-out;
+		transform: scale(0.98);
+	}
+
+	33% {
+		animation-timing-function: ease-in;
+		transform: scale(0.87);
+	}
+
+	45% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+}

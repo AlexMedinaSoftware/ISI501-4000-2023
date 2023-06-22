@@ -25,9 +25,9 @@ var playersound;
 
 
 var volume = {
-    menu: 0.1,
-    game: 0.2,
-    sounds: 1,
+    menu: 5,
+    game: 3,
+    sounds: 2,
 }
 
 function loadSounds(){
@@ -62,7 +62,7 @@ function loadSounds(){
 
 function playMenuSound(){
     menusound.loop();
-    menusound.setVolume(volume.menu);
+    menusound.setVolume(volume.menu/1000);
 }
 function stopMenuSound(){
     try{
@@ -73,7 +73,7 @@ function stopMenuSound(){
 function playGameplaySound(){
     gameplaysound = random([gameplaysound0, gameplaysound1, gameplaysound2]);
     gameplaysound.loop();
-    gameplaysound.setVolume(volume.game);
+    gameplaysound.setVolume(volume.game/1000);
     playersound = carsound4;
 }
 
@@ -86,22 +86,22 @@ function stopGameplaySound(){
 
 function coinSound(){
     var coins = random([coin0,coin1]);
-    coins.setVolume(volume.sounds);
+    coins.setVolume(volume.sounds/1000);
     coins.play();
 }
 
 function wastedSound(){
-    wasted.setVolume(volume.sounds);
+    wasted.setVolume(volume.sounds/1000);
     wasted.play();
 }
 
 function onFocusedMenu(){
-    menu0.setVolume(volume.sounds);
+    menu0.setVolume(volume.sounds/1000);
     menu0.play();
 }
 
 function onClickMenu(){
-    menu1.setVolume(volume.sounds);
+    menu1.setVolume(volume.sounds/1000);
     menu1.play();
 }
 
@@ -126,6 +126,7 @@ function setCarSound(speed){
         playersound.stop();
         playersound = newSound;
         playersound.loop();
+        playersound.setVolume(volume.sounds/1000);
     }
 
 }

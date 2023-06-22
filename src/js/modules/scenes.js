@@ -1,3 +1,5 @@
+var pause = false;
+
 function sceneGame() {
     var bgVelocity = getBackgroundVelocity();
     //muesta el background
@@ -19,6 +21,9 @@ function sceneGame() {
     showGameInfo();
 }
 
+
+
+
 function sceneOver() {
     push();
     background(0);
@@ -39,23 +44,23 @@ function sceneVideo() {
     fill(255);
     stroke(255);
     text("CLICK TO PLAY", width / 4, height / 2);
-    image(__video, 0, 200, width, height-400, 0, 0, 1920, 1080);
+    image(__video, 0, 200, width, height - 400, 0, 0, 1920, 1080);
     if (__videoEnded) {
-      changeScene(1);
-      resetGameScene();
+        changeScene(1);
+        resetGameScene();
     }
-    if (sceneVideoFirst){
+    if (sceneVideoFirst) {
         setupVideoScene();
         sceneVideoFirst = false;
         __video.play();
     }
-    
-    if (__video.time() == 0){
+
+    if (__video.time() == 0) {
         __video.play();
     }
     skipVideo.draw();
     pop();
-  }
+}
 
 var hoverPlay = false;
 function sceneMenu() {
@@ -70,7 +75,7 @@ function sceneMenu() {
 
     if (mouseX > width / 2 - 75 && mouseX < width / 2 + 75 && mouseY > height / 2 && mouseY < height / 2 + 40) {
         fill(255, 0, 0); // Resaltar el botón cuando el cursor está sobre él
-        if (!hoverPlay){
+        if (!hoverPlay) {
             hoverPlay = true;
             onFocusedMenu();
         }
@@ -134,4 +139,11 @@ function gameLevel() {
     }
 }
 
-
+function pauseGame(){
+    onClickMenu();
+    if (pause) {
+        noLoop();
+    } else {
+        loop();
+    }
+}
