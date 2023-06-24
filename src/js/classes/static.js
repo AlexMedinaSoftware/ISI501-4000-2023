@@ -16,3 +16,11 @@ function loadNameFiles(path, from, to, ext){
     }
     return res;
 }
+
+function loadNameFilesInversed(path, from, to, ext){
+    var res = new Array();
+    for(let i = from; i <= to; i++){
+        res.push(path + i + "." + ext);
+    }
+    return res.reverse();
+}

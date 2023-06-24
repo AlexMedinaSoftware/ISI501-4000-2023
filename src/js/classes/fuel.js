@@ -5,15 +5,18 @@ class Fuel {
     y = 100;
     // Se reduce el tamaño X e Y de los enemigos
     // PENDIENTE: Cambiar el tamaño de los barriles
-    w = 40; //80
-    h = 40; //140
+    w = 50; //80
+    h = 50; //140
     asset;
+    assets = new Array();
     type = 5;
     preangle = 0;
+    withAnim = false;
+    assetsIndex = parseFloat(0);
 
     constructor({w, h, type, speed}) {
-        if (w == undefined) w = 30;
-        if (h == undefined) h = 30;
+        if (w == undefined) w = 50;
+        if (h == undefined) h = 50;
         if (type == undefined) type = 5;
         if (speed == undefined) speed = 6;
         this.w = w;
@@ -30,14 +33,32 @@ class Fuel {
      * @param {string} img Ruta imagen normal de la bencina
      */
     load(img) {
+        this.withAnim = false;
         this.asset = loadImage(img);
     }
+
+    /**
+     * Precarga los assets de la bencina con animación
+     * @param {string} img Ruta imagen normal de la bencina
+     */
+    loadAnim(imgs) {
+        this.withAnim = true;
+        imgs.forEach(img => {
+            this.assets.push(loadImage(img));
+        });
+    }
+
+
     /**
      * Dibuja la bencina en pantalla
      */
     draw(angle = 0) {
-        if (angle == 0){
+        if (!this.withAnim){
             image(this.asset, this.x, this.y, this.w, this.h);
+        }else{
+            image(this.assets[parseInt(this.assetsIndex)], this.x, this.y, this.w, this.h);
+            this.assetsIndex += 0.2;
+            if (parseInt(this.assetsIndex) >= this.assets.length) this.assetsIndex = parseFloat(0);
         }
     }
 

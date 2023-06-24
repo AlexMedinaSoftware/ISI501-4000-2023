@@ -2,7 +2,7 @@ let __logoImage;
 
 function preload() {
   //cargamos el fondo A
-  loadBackgroundA();
+  loadBackgroundB();
 
   //imagen de referencia en blanco
   blank = loadImage("assets/blank.png");
@@ -26,7 +26,7 @@ function setup() {
   //corre la funcion para optimiza p5.js
   optimize();
   //seteamos el fondo a para mostrarlo
-  __bgDisplayed = __bgA;
+  __bgDisplayed = __bgB;
   //creamos el fondo del juego
   createCanvas(700, 800);
   //seteamos la velocidad del juego en 5
@@ -39,6 +39,7 @@ function setup() {
     content: 'Skip',
     on_press() {
       changeScene(1);
+      __video.stop();
     }
   });
 

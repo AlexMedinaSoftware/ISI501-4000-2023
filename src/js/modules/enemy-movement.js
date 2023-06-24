@@ -1,6 +1,7 @@
 var __enemy_perkin;
 var __enemy_choro;
 var __enemy_explosion;
+var __enemy_fuel;
 
 var __screenEnemies = [];
 var __defSpawnPositions = [115, 155, 215, 257, 335, 367, 410, 430, 450, 472, 535];
@@ -21,13 +22,13 @@ var lastGeneration = 0;
  */
 function loadEnemies() {
     __enemy_perkin = new Enemy({type: 1, speed: 6});
-    __enemy_perkin.load("assets/EAN.png", "assets/EAL.png", "assets/EAR.png");
+    __enemy_perkin.load("assets/perkin/YARISC.png", "assets/perkin/YARISL.png", "assets/perkin/YARISR.png");
 
     __enemy_choro = new Enemy({type: 2, speed: 7});
-    __enemy_choro.load("assets/EBN.png", "assets/EBL.png", "assets/EBR.png");
+    __enemy_choro.load("assets/choro/SUVC.png", "assets/choro/SUVL.png", "assets/choro/SUVR.png");
 
-    __enemy_fuel = new Fuel({type: 5, speed: 6});
-    __enemy_fuel.load("assets/fuel_prov.png");
+    __enemy_fuel = new Fuel({type: 5, speed: 9});
+    __enemy_fuel.loadAnim(loadNameFiles("assets/fuel/barril",0,5,"png"));
 
     __enemy_explosion = new Explosion({type: 6, speed: 6});
     __enemy_explosion.load(loadNameFiles("assets/boom/boom_",0,32,"png"));

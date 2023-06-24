@@ -14,6 +14,18 @@ function loadBackground(bg, ...images){
     });
 }
 
+//carga el bg con la imagenes proporcionadas
+function loadBackground(bg, images){
+    images.forEach(element => {
+        bg.addAsset(loadImage(element)); 
+    });
+}
+
 function loadBackgroundA(){
-    loadBackground(__bgA, "assets/bg1.jpg", "assets/bg2.jpg", "assets/bg3.jpg", "assets/bg4.jpg", "assets/bg5.jpg", "assets/bg6.jpg", "assets/bg7.jpg", "assets/bg8.jpg", "assets/bg9.jpg");
+    loadBackground(__bgA, loadNameFilesInversed("assets/bg/BGB",0,299,"jpg"));
+}
+
+function loadBackgroundB(){
+    __bgB = new Backgrond(2, 4000);
+    __bgB.addAsset(loadImage("assets/bg/bgc.png")); 
 }

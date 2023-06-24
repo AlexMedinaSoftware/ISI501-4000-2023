@@ -44,5 +44,6 @@ function gameVelocity(velocity){
 }
 
 function getBackgroundVelocity(){
+    return __gameVelocity + 1;
     return (__maxGameVelocity + 1) - __gameVelocity;
 }
