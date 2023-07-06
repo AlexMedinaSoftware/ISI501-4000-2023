@@ -99,7 +99,7 @@ function processEnemies() {
 function calculePlayerCollitions() {
     __screenEnemies.forEach(enemy => {
         if (enemy.type !== 5 && enemy.type !== 6) {
-            var hit = collideRectRect(enemy.x + 5, enemy.y + 5, enemy.w - 10, enemy.h - 10, __prota.x, __prota.y, __prota.w, __prota.h);
+            var hit = collideRectRect(enemy.x + 10, enemy.y + 10, enemy.w - 20, enemy.h - 20, __prota.x, __prota.y, __prota.w, __prota.h);
             if (hit) {
                 changeScene(3);
                 return;
@@ -215,7 +215,7 @@ function removeEnemy(enemy, fromCollide = false) {
 function notCollide(aenemy) {
     var collide = false;
     __screenEnemies.forEach(enemy => {
-        var hit = collideRectRect(enemy.x + 20, enemy.y + 20, enemy.w - 40, enemy.h - 40, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
+        var hit = collideRectRect(enemy.x + 10, enemy.y + 10, enemy.w - 20, enemy.h - 20, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
         if (hit) collide = true;
     });
     return !collide;
@@ -230,7 +230,7 @@ function collideEnemies() {
         var aindex = __screenEnemies.indexOf(aenemy);
         __screenEnemies.forEach(enemy => {
             var index = __screenEnemies.indexOf(enemy);
-            var hit = collideRectRect(enemy.x + 20, enemy.y + 20, enemy.w - 40, enemy.h - 40, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
+            var hit = collideRectRect(enemy.x + 10, enemy.y + 10, enemy.w - 20, enemy.h - 20, aenemy.x, aenemy.y, aenemy.w, aenemy.h);
             if ((aenemy.type != 5 && enemy.type != 5) && (aenemy.type != 6 && enemy.type != 6)) {
                 if (hit && (aindex != index)) {
                     if (enemy.type > aenemy.type) {
