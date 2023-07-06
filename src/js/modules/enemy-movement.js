@@ -2,6 +2,7 @@ var __enemy_perkin;
 var __enemy_choro;
 var __enemy_explosion;
 var __enemy_fuel;
+var __enemy_tuneao;
 
 var __screenEnemies = [];
 var __defSpawnPositions = [115, 155, 215, 257, 335, 367, 410, 430, 450, 472, 535];
@@ -10,10 +11,12 @@ var __spawnPositions = [115, 155, 215, 257, 335, 367, 410, 430, 450, 472, 535];
 var __maxPerkin = 3;
 var __maxChoro = 2;
 var __maxFuel = 2;
+var __maxTuneao = 2;
 
 var __probPerkin = 70;
 var __probChoro = 60;
 var __probFuel = 40;
+var __probTuneao = 30;
 
 var lastGeneration = 0;
 
@@ -25,13 +28,17 @@ function loadEnemies() {
     __enemy_perkin.load("assets/perkin/YARISC.png", "assets/perkin/YARISL.png", "assets/perkin/YARISR.png");
 
     __enemy_choro = new Enemy({type: 2, speed: 7});
-    __enemy_choro.load("assets/choro/SUVC.png", "assets/choro/SUVL.png", "assets/choro/SUVR.png");
+    __enemy_choro.load("assets/choro/IMPREZAC.png", "assets/choro/IMPREZAL.png", "assets/choro/IMPREZAR.png");
+
+    __enemy_tuneao = new Enemy({type: 3, speed: 10});
+    __enemy_tuneao.load("assets/tuneao/SUVC.png", "assets/tuneao/SUVL.png", "assets/tuneao/SUVR.png");
 
     __enemy_fuel = new Fuel({type: 5, speed: 9});
     __enemy_fuel.loadAnim(loadNameFiles("assets/fuel/barril",0,5,"png"));
 
     __enemy_explosion = new Explosion({type: 6, speed: 6});
-    __enemy_explosion.load(loadNameFiles("assets/boom/boom_",0,32,"png"));
+    __enemy_explosion.load(loadNameFiles("assets/boom/boom_",0,32,"png"));   
+    
 }
 
 /**
@@ -63,6 +70,17 @@ function processEnemies() {
             }
         }
 
+        if (prob < __probTuneao) {
+            var e = Object.assign(Object.create(Object.getPrototypeOf(__enemy_tuneao)), __enemy_tuneao)
+            e.x = getRandomPositionX();
+            e.y = -150;
+            Object.seal(e);
+            if (getCountEnemies(2) < __maxTuneao && notCollide(e)) {
+                console.log("Generando tuneao");
+                __screenEnemies.push(e);
+            }
+        }
+
         if (prob < __probFuel) {
             var e = Object.assign(Object.create(Object.getPrototypeOf(__enemy_fuel)), __enemy_fuel)
             e.x = getRandomPositionX();
@@ -81,7 +99,7 @@ function processEnemies() {
 function calculePlayerCollitions() {
     __screenEnemies.forEach(enemy => {
         if (enemy.type !== 5 && enemy.type !== 6) {
-            var hit = collideRectRect(enemy.x + 20, enemy.y + 20, enemy.w - 40, enemy.h - 40, __prota.x, __prota.y, __prota.w, __prota.h);
+            var hit = collideRectRect(enemy.x + 5, enemy.y + 5, enemy.w - 10, enemy.h - 10, __prota.x, __prota.y, __prota.w, __prota.h);
             if (hit) {
                 changeScene(3);
                 return;

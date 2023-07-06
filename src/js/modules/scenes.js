@@ -1,4 +1,5 @@
 var pause = false;
+var runTutorial = false;
 
 function sceneGame() {
     var bgVelocity = getBackgroundVelocity();
@@ -19,6 +20,30 @@ function sceneGame() {
 
     //muestra la info del juego
     showGameInfo();
+}
+
+
+function sceneTutorial() {
+    var bgVelocity = getBackgroundVelocity();
+    //muesta el background
+    __bgDisplayed.draw(bgVelocity);
+
+    //muestra el jugador
+    showPlayer();
+
+    //muestra los enemigos
+    //showEnemies();
+
+    //agrega el rectangulo de abajo para guardar espacio para los kilometros y la bencina
+    fill(255, 204, 0);
+    rect(0, 650, 700, 150);
+
+    gameLevel();
+
+    //muestra la info del juego
+    showGameInfo();
+
+    //image(__video, 0, 200, width, height - 400, 0, 0, 1920, 1080);
 }
 
 
@@ -83,7 +108,11 @@ function sceneMenu() {
             onClickMenu();
             // Redireccionar al juego cuando se hace clic en el botón "Jugar"
             stopMenuSound();
-            changeScene(2);
+            if (runTutorial){
+                changeScene(5);
+            }else{
+                changeScene(2);
+            }
         }
     } else {
         hoverPlay = false;

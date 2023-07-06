@@ -9,8 +9,8 @@ class Enemy {
 
     x = 200;
     y = 200;
-    w = 80; //80
-    h = 140; //140
+    w = 50; //80
+    h = 80; //140
     asset;
     assetL;
     assetR;
@@ -22,8 +22,8 @@ class Enemy {
      * @param {object} Opciones Configuracion del enemigo
      */
     constructor({w, h, type, speed}) {
-        if (w == undefined) w = 80;
-        if (h == undefined) h = 140;
+        if (w == undefined) w = 50;
+        if (h == undefined) h = 80;
         if (type == undefined) type = 1;
         if (speed == undefined) speed = 6;
         this.w = w;
@@ -83,6 +83,21 @@ class Enemy {
         }
 
         if (this.type == 2) {
+            this.preangle = 0;
+            this.y += amount;
+            if (this.y - player.h < player.y) {
+                if (player.x < this.x) {
+                    this.x -= 1;
+                    this.preangle = 1;
+                }
+                if (player.x > this.x) {
+                    this.x += 1;
+                    this.preangle = -1;
+                }
+            }
+        }
+
+        if (this.type == 3) {
             this.preangle = 0;
             this.y += amount;
             if (this.y - player.h < player.y) {

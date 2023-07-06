@@ -27,5 +27,5 @@ function loadBackgroundA(){
 
 function loadBackgroundB(){
     __bgB = new Backgrond(2, 4000);
-    __bgB.addAsset(loadImage("assets/bg/bgc.png")); 
+    __bgB.addAsset(loadImage("assets/bg/bge.png")); 
 }

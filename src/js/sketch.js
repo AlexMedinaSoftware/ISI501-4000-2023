@@ -50,6 +50,7 @@ function setup() {
 //scene 2: GAME
 //scene 3: GAME OVER
 //scene 4: VIDEO
+//scene 5: TUTORIAL
 var currentScene = 4;
 var lastChange = 0;
 
@@ -68,6 +69,9 @@ function draw() {
       break;
     case 4:
       sceneVideo();
+      break;
+    case 5:
+      sceneTutorial();
       break;
     default:
       break;
@@ -91,7 +95,7 @@ function changeScene(number) {
     playMenuSound();
   }
 
-  if (number == 2) {
+  if (number == 2 || number == 5) {
     playGameplaySound();
     resetGameScene();
     pauseBtn.hidden = false;
@@ -140,4 +144,3 @@ function empty() {
     return;
   }
 }
-

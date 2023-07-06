@@ -3,8 +3,8 @@ let __turn = false;
 let __prota = new Character();
 
 const __screenLimits = {
-  Left: 110,
-  Right: 110,
+  Left: 80,
+  Right: 80,
   Top: 10,
   Bottom: 150
 };

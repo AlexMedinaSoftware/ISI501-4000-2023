@@ -2,16 +2,16 @@ class Character {
 
     x = 307;
     y = 510;
-    w = 80; //80
-    h = 140; //140
+    w = 50; //80
+    h = 80; //140
     asset;
     assetL;
     assetR;
     speedScalar = 5;
 
     constructor(w, h) {
-        if (w == undefined) w = 80;
-        if (h == undefined) h = 140;
+        if (w == undefined) w = 50;
+        if (h == undefined) h = 80;
         this.w = w;
         this.h = h;
         Object.freeze(this.w);
